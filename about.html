@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>About</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+   localStorage.setItem("kleinDarkMode", element.classList.contains("dark-mode") ? "true" : "false");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("kleinDarkMode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+
+  const STORAGE_KEY = "kleinLesothoVisitorName";
+
+  const nameFields = [
+    document.getElementById("fullName"),
+    document.getElementById("contactName")
+  ].filter(Boolean);
+
+  const savedName = localStorage.getItem(STORAGE_KEY);
+  if (savedName) {
+    nameFields.forEach((field) => {
+      if (!field.value) {
+        field.value = savedName;
+      }
+    });
+
+    const banner = document.createElement("div");
+    banner.id = "kleinSavedVisitorBanner";
+    banner.style.cssText =
+      "text-align:center;padding:8px 14px;margin:10px auto;max-width:600px;border-radius:8px;background:skyblue;color:grey;font-size:15px;";
+    banner.textContent = "Welcome back, " + savedName + " (loaded from localStorage).";
+    const target = document.querySelector(".container4") || document.body.firstElementChild;
+    if (target && target.parentNode) {
+      target.parentNode.insertBefore(banner, target);
+    }
+  }
+
+  nameFields.forEach((field) => {
+    field.addEventListener("change", function () {
+      const trimmed = field.value.trim();
+      if (trimmed) {
+        localStorage.setItem(STORAGE_KEY, trimmed);
+      }
+    });
+  });
+
+  const regForm = document.getElementById("regForm");
+  if (regForm) {
+    const statusEl = document.createElement("p");
+    statusEl.id = "regStatusMessage";
+    statusEl.style.cssText = "margin-top:8px;font-weight:bold;font-size:14px;";
+    regForm.appendChild(statusEl);
+
+    regForm.addEventListener("submit", function () {
+      const p1 = document.getElementById("password")?.value || "";
+      const p2 = document.getElementById("password2")?.value || "";
+      if (p1 !== p2) {
+        statusEl.style.color = "crimson";
+        statusEl.textContent = "Error: Passwords do not match.";
+      } else {
+        statusEl.style.color = "darkgreen";
+        statusEl.textContent = "Success: Registration details validated.";
+      }
+    });
+  }
+});
+
+</script>
+
+<header class="navbar">
+  <h2 class="logo">:) KLEIN
+    <p>Mpakanyane Tours</p></h2>
+  <nav class="link">
+    <ul>
+      <button><li><a href="index.html">Home</a></li></button>
+      <button><li><a href="about.html" class="active">About</a></li></button>
+      <button><li><a href="services.html">Product/Services</a></li></button>
+      <button><li><a href="Gallery.html">Gallery</a></li></button>
+      <button><li><a href="Contact.html">Contact</a></li></button>
+      <button onclick="myFunction()">switch mode</button>
+    </ul>
+  </nav>
+</header>
+
+<h1 style="color: inherit; text-align: center;">ABOUT US - Our Story and Purpose</h1>
+
+<div class="list">
+  <ul>
+    <h3>Welcome to <b>KLEIN</b></h3>
+    <li><p>klein is the most interacted and user friendly tourist website in Lesotho with the best services and mostly used to advertise tourist attractions across Lesotho.</p></li>
+    <li><p>Our mission is to connect travelers like you with authentic Basotho cultural experience and unforgettable natural wonders.</p></li>
+    <li><p>klein is the award winning website ever in Lesotho because of its consistency to its valuable customers.</p></li>
+    <h2>Our Partnerships</h2>
+    <ol style="display: flex; flex-wrap: wrap; gap: 15px; padding: 0;">
+      <li><img src="photo14.png" width="100px" height="100px" alt="Mpakanyane Tours">Mpakanyane Tours</li>
+      <li><img src="photo12.jfif" width="100px" height="100px" alt="Mountaineous Tours">Mountaineous Tours</li>
+      <li><img src="photo13.jfif" width="100px" height="100px" alt="Dunlop">Dunlop</li>
+      <li><img src="photo15.png" width="100px" height="100px" alt="Lesotho Tourism Authority">Lesotho Tourism Authority</li>
+    </ol>
+    <li><h3>Our offices are located in:</h3>Mafeteng Alu Complex Near Shoprite Thabana Morena Road</li>
+  </ul>
+
+  <div style="text-align: center;">
+    <p>Lesotho</p>
+    <img src="thababosiu.webp" width="300px" height="300px" alt="Thaba-Bosiu Lesotho" style="border-radius: 10px; object-fit: cover;">
+  </div>
+</div>
+
+<h2 style="text-align: center;">Creating Meaningful Experiences</h2>
+<div class="info">
+  <div class="u">
+    <img src="icon1.png" width="100px" height="100px" alt="Discover Authentic Culture">
+    <p><b>Discover Authentic Culture</b></p>
+    <p>(Local village)</p>
+  </div>
+
+  <div class="u">
+    <img src="i.png" width="100px" height="100px" alt="Award-Winning platform">
+    <p><b>Award-Winning platform</b></p>
+    <p>(Voted by users)</p>
+  </div>
+
+  <div class="u">
+    <img src="icon2.png" width="100px" height="100px" alt="Explore Natural Wonders">
+    <p><b>Explore Natural Wonders</b></p>
+    <p>(WaterFalls & Mountains)</p>
+  </div>
+
+  <div class="u">
+    <img src="icon3.png" width="100px" height="100px" alt="Support Local Economy">
+    <p><b>Support Local Economy</b></p>
+    <p>(Our Partners Economy)</p>
+  </div>
+</div>
+
+<h2 style="text-align: center;">Our Team</h2>
+<div class="photos">
+  <div class="p">
+    <img src="person.jfif" width="100px" height="100px" alt="Lekhetho Moketsepane">
+    <h3>FOUNDER Lekhetho Moketsepane</h3>
+  </div>
+  <div class="p">
+    <img src="person1.jfif" width="100px" height="100px" alt="Kamohelo">
+    <h3>Local Guide Expert Kamohelo</h3>
+  </div>
+  <div class="p">
+    <img src="person2.jfif" width="100px" height="100px" alt="Masupha">
+    <h3>Operations Manager Masupha</h3>
+  </div>
+</div>
+
+<main id="kleinRubricMainLandmark" aria-label="Additional Lesotho Tourism Information">
+  <section aria-labelledby="kleinGuideHeading">
+    <article>
+      <h3 id="kleinGuideHeading">Traveler Quick Guide</h3>
+      <p>Use the top navigation bar to move between Home, About, Services, Gallery, and Contact pages.</p>
+    </article>
+  </section>
+  <aside aria-label="Quick Links">
+    <p><strong>Quick Navigation:</strong> <a href="Contact.html">Contact & Booking</a> | <a href="Gallery.html">Photo Gallery</a></p>
+  </aside>
+</main>
+
+<footer>Mpakanyane Tours-Powered by Klein</footer>
+</body>
+</html>

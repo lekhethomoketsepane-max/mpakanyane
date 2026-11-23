@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Contact</title>
+</head>
+
+<body>
+
+<header class="navbar">
+  <h2 class="logo">:) KLEIN<p>Mpakanyane Tours</p></h2>
+  <nav class="link">
+    <ul>
+      <button><li><a href="index.html">Home</a></li></button>
+      <button><li><a href="about.html">About</a></li></button>
+      <button><li><a href="services.html">Product/Services</a></li></button>
+      <button><li><a href="Gallery.html">Gallery</a></li></button>
+      <button><li><a href="Contact.html" class="active">Contact</a></li></button>
+      <button onclick="myFunction()">switch mode</button>
+    </ul>
+  </nav>
+</header>
+
+<section class="head">
+  <div>
+    <p><h3><b>Phone</b></h3>+266 57796113</p>
+  </div>
+  <div>
+    <p><h3><b>Email</b></h3><a href="mailto:lekhethomoketsepane4@gmail.com">lekhethomoketsepane4@gmail.com</a></p>
+  </div>
+  <div>
+    <p><h3><b>Location</b></h3>Mafeteng Alu Complex Thabana Morena Road</p>
+  </div>
+</section>
+
+<div class="container4">
+  <div class="row">
+    <div class="box1">
+      <form method="post" id="contact">
+        <h1>Contact Us</h1>
+        <label>Name</label><br>
+        <input type="text" id="contactName" placeholder="Enter name.." required><br>
+
+        <label>Email</label><br>
+        <input type="email" placeholder="Enter Email.." required><br>
+
+        <label>Subject</label><br>
+        <input type="text" placeholder="Subject.." required><br>
+
+        <label>Message</label><br>
+        <textarea placeholder="Message.." rows="4" cols="30" required></textarea><br>
+
+        <button type="submit">Sent</button>
+      </form>
+    </div>
+
+    <div class="box2">
+      <section>
+        <h1>Register</h1>
+        <form id="regForm">
+          <label>Full Name:</label><br>
+          <input type="text" id="fullName" required><br>
+
+          <label>Email Address:</label><br>
+          <input type="email" id="email" required><br>
+
+          <label>Phone Number:</label><br>
+          <input type="tel" id="phone" required><br>
+
+          <label>Password:</label><br>
+          <input type="password" id="password" required><br>
+
+          <label>Confirm password:</label><br>
+          <input type="password" id="password2" required><br>
+
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="box3">
+      <h1>Book A Service</h1>
+      <form id="app">
+        <label>Date</label><br>
+        <input type="date" id="bookDate" required><br>
+
+        <label>Service</label><br>
+        <input type="text" placeholder="Service name" required><br>
+
+        <label>Number of People</label><br>
+        <input type="number" min="1" required><br>
+
+        <label>Additional Information(optional)</label><br>
+        <textarea placeholder="Extra details..." rows="4" cols="30"></textarea><br>
+
+        <button type="submit">submit</button>
+      </form>
+    </div>
+
+    <div class="box4">
+      <form>
+        <h1>Cost Estimation</h1>
+        <label>First Number:</label><br>
+        <input type="number" id="num1" placeholder="e.g. 64" required><br>
+
+        <label>Second Number:</label><br>
+        <input type="number" id="num2" placeholder="e.g. 8" required><br>
+
+        <label>Number of people:</label><br>
+        <input type="number" id="num3" placeholder="e.g. 1" required><br>
+
+        <label>Choose Operation:</label><br>
+        <select id="operator">
+          <option value="+">Add (+)</option>
+          <option value="-">Subtract (-)</option>
+          <option value="*">Multiply (*)</option>
+          <option value="/">Divide (/)</option>
+        </select><br>
+
+        <button type="button" onclick="calculate()">Calculate</button>
+        <p id="result">Result will show here</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<section class="container my-4" id="bs5RubricAddon">
+
+    <div class="col-12 col-md-6">
+      <div class="accordion" id="bs5FaqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Best Time to Visit
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#bs5FaqAccordion">
+            <div class="accordion-body">
+              Check seasonal mountain roads and weather forecasts before traveling into the highlands.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="bs5QuickInfoModal" tabindex="-1" aria-labelledby="bs5QuickInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bs5QuickInfoLabel">Lesotho Trip Checklist</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Pack warm layers, confirm transport and accommodation ahead of time, and carry local contact details.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p style="text-align: center;">The Most Trusted Transport In Lesotho From Anywhere to your Destination</p>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: center; font-size: 15px;" class="five">
+  <span><img src="photo14.png" width="20px" height="20px" alt=""> Mpakanyane Tours: +266 57565757</span>
+  <span><img src="photo12.jfif" width="20px" height="20px" alt=""> Mountaineous Tours: +266 56575858</span>
+  <span><img src="photo13.jfif" width="20px" height="20px" alt=""> Dunlop: +266 57767676</span>
+  <span><img src="photo16.png" width="20px" height="20px" alt=""> Rorisang: +266 56666666</span>
+</div>
+
+<script>
+function calculate() {
+  let n1 = Number(document.getElementById("num1").value);
+  let n2 = Number(document.getElementById("num2").value);
+  let n3 = Number(document.getElementById("num3").value) || 1;
+  let op = document.getElementById("operator").value;
+  let answer = 0;
+
+  if (op == "+") {
+    answer = n1 + n2 * n3;
+  } else if (op == "-") {
+    answer = (n1 - n2) * n3;
+  } else if (op == "*") {
+    answer = n1 * n2 * n3;
+  } else if (op == "/") {
+    answer = n2 !== 0 ? (n1 / n2) * n3 : 0;
+  }
+
+  document.getElementById("result").innerText = "Result is: " + answer;
+}
+
+document.getElementById("regForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const name = document.getElementById("fullName").value;
+  const pass1 = document.getElementById("password").value;
+  const pass2 = document.getElementById("password2").value;
+  if (pass1 !== pass2) {
+    alert("Passwords do not match");
+    return;
+  }
+  alert(name);
+  alert("Registration Successful");
+});
+
+document.getElementById("contact").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const name = document.getElementById("contactName").value;
+  alert(name);
+  alert("message sent");
+  let status = document.getElementById("contactStatusMessage");
+  if (!status) {
+    status = document.createElement("p");
+    status.id = "contactStatusMessage";
+    status.style.cssText = "margin-top:8px;font-weight:bold;font-size:14px;color:darkgreen;";
+    this.appendChild(status);
+  }
+  status.textContent = "Message received from " + name + ".";
+});
+
+document.getElementById("app").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const date = document.getElementById("bookDate").value;
+  alert(date);
+  alert("Application Successful");
+  let status = document.getElementById("appStatusMessage");
+  if (!status) {
+    status = document.createElement("p");
+    status.id = "appStatusMessage";
+    status.style.cssText = "margin-top:8px;font-weight:bold;font-size:14px;color:darkgreen;";
+    this.appendChild(status);
+  }
+  status.textContent = "Booking request recorded for " + date + ".";
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("kleinDarkMode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const prefilledService = params.get("service");
+  if (prefilledService) {
+    const serviceInput = document.querySelector('#app input[placeholder="Service name"]');
+    if (serviceInput && !serviceInput.value) {
+      serviceInput.value = prefilledService;
+    }
+  }
+
+  const STORAGE_KEY = "kleinLesothoVisitorName";
+
+  const nameFields = [
+    document.getElementById("fullName"),
+    document.getElementById("contactName")
+  ].filter(Boolean);
+
+  const savedName = localStorage.getItem(STORAGE_KEY);
+  if (savedName) {
+    nameFields.forEach((field) => {
+      if (!field.value) {
+        field.value = savedName;
+      }
+    });
+
+    const banner = document.createElement("div");
+    banner.id = "kleinSavedVisitorBanner";
+    banner.style.cssText =
+      "text-align:center;padding:8px 14px;margin:10px auto;max-width:600px;border-radius:8px;background:skyblue;color:grey;font-size:15px;";
+    banner.textContent = "Welcome back, " + savedName + " (loaded from localStorage).";
+    const target = document.querySelector(".container4") || document.body.firstElementChild;
+    if (target && target.parentNode) {
+      target.parentNode.insertBefore(banner, target);
+    }
+  }
+
+  nameFields.forEach((field) => {
+    field.addEventListener("change", function () {
+      const trimmed = field.value.trim();
+      if (trimmed) {
+        localStorage.setItem(STORAGE_KEY, trimmed);
+      }
+    });
+  });
+
+  const regForm = document.getElementById("regForm");
+  if (regForm) {
+    const statusEl = document.createElement("p");
+    statusEl.id = "regStatusMessage";
+    statusEl.style.cssText = "margin-top:8px;font-weight:bold;font-size:14px;";
+    regForm.appendChild(statusEl);
+
+    regForm.addEventListener("submit", function () {
+      const p1 = document.getElementById("password")?.value || "";
+      const p2 = document.getElementById("password2")?.value || "";
+      if (p1 !== p2) {
+        statusEl.style.color = "crimson";
+        statusEl.textContent = "Error: Passwords do not match.";
+      } else {
+        statusEl.style.color = "darkgreen";
+        statusEl.textContent = "Success: Registration details validated.";
+      }
+    });
+  }
+});
+
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+   localStorage.setItem("kleinDarkMode", element.classList.contains("dark-mode") ? "true" : "false");
+}
+</script>
+
+<footer>Mpakanyane Tours-Powered by Klein</footer>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Basotho Culture</title>
+</head>
+<body>
+
+<script>
+let currentBasothoIndex = 0;
+
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+   localStorage.setItem("kleinDarkMode", element.classList.contains("dark-mode") ? "true" : "false");
+}
+
+function showImage(imgs) {
+  var allImages = Array.from(document.querySelectorAll(".column img"));
+  currentBasothoIndex = allImages.indexOf(imgs);
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = (imgs.alt || "Basotho Culture") + " (" + (currentBasothoIndex + 1) + " of " + allImages.length + ")";
+  expandImg.parentElement.style.display = "block";
+}
+
+function stepBasotho(delta) {
+  var allImages = Array.from(document.querySelectorAll(".column img"));
+  if (!allImages.length) return;
+  currentBasothoIndex = (currentBasothoIndex + delta + allImages.length) % allImages.length;
+  showImage(allImages[currentBasothoIndex]);
+}
+
+document.addEventListener("keydown", function (event) {
+  var expandImg = document.getElementById("expandedImg");
+  if (!expandImg || expandImg.parentElement.style.display !== "block") return;
+  if (event.key === "ArrowRight") stepBasotho(1);
+  if (event.key === "ArrowLeft") stepBasotho(-1);
+  if (event.key === "Escape") expandImg.parentElement.style.display = "none";
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("kleinDarkMode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+
+  const STORAGE_KEY = "kleinLesothoVisitorName";
+
+  const nameFields = [
+    document.getElementById("fullName"),
+    document.getElementById("contactName")
+  ].filter(Boolean);
+
+  const savedName = localStorage.getItem(STORAGE_KEY);
+  if (savedName) {
+    nameFields.forEach((field) => {
+      if (!field.value) {
+        field.value = savedName;
+      }
+    });
+
+    const banner = document.createElement("div");
+    banner.id = "kleinSavedVisitorBanner";
+    banner.style.cssText =
+      "text-align:center;padding:8px 14px;margin:10px auto;max-width:600px;border-radius:8px;background:skyblue;color:grey;font-size:15px;";
+    banner.textContent = "Welcome back, " + savedName + " (loaded from localStorage).";
+    const target = document.querySelector(".container4") || document.body.firstElementChild;
+    if (target && target.parentNode) {
+      target.parentNode.insertBefore(banner, target);
+    }
+  }
+
+  nameFields.forEach((field) => {
+    field.addEventListener("change", function () {
+      const trimmed = field.value.trim();
+      if (trimmed) {
+        localStorage.setItem(STORAGE_KEY, trimmed);
+      }
+    });
+  });
+
+  const regForm = document.getElementById("regForm");
+  if (regForm) {
+    const statusEl = document.createElement("p");
+    statusEl.id = "regStatusMessage";
+    statusEl.style.cssText = "margin-top:8px;font-weight:bold;font-size:14px;";
+    regForm.appendChild(statusEl);
+
+    regForm.addEventListener("submit", function () {
+      const p1 = document.getElementById("password")?.value || "";
+      const p2 = document.getElementById("password2")?.value || "";
+      if (p1 !== p2) {
+        statusEl.style.color = "crimson";
+        statusEl.textContent = "Error: Passwords do not match.";
+      } else {
+        statusEl.style.color = "darkgreen";
+        statusEl.textContent = "Success: Registration details validated.";
+      }
+    });
+  }
+});
+
+</script>
+
+<header class="navbar">
+  <h2 class="logo">:) KLEIN
+    <p>Mpakanyane Tours</p></h2>
+  <nav class="link">
+    <ul>
+      <button><li><a href="index.html">Home</a></li></button>
+      <button><li><a href="about.html">About</a></li></button>
+      <button><li><a href="services.html">Product/Services</a></li></button>
+      <button><li><a href="Gallery.html" class="active">Gallery</a></li></button>
+      <button><li><a href="Contact.html">Contact</a></li></button>
+      <button onclick="myFunction()">switch mode</button>
+    </ul>
+  </nav>
+</header>
+
+<div class="gallery-item">
+  <div class="desc">Basotho Clothing, Food And Animals</div>
+</div>
+
+<div class="h">
+  <div class="row">
+    <div class="food">
+      <h3>Food</h3>
+      <div class="column"><img src="p1.jpg" alt="Papa Ka Moroho" onclick="showImage(this);"></div>
+      <div class="column"><img src="p2.jpg" alt="Nyekoe" onclick="showImage(this);"></div>
+      <div class="column"><img src="p4.jpg" alt="Basotho Food" onclick="showImage(this);"></div>
+      <div class="column"><img src="p6.jpg" alt="Liphaphatha" onclick="showImage(this);"></div>
+      <div class="column"><img src="p8.jpg" alt="Bohobe" onclick="showImage(this);"></div>
+      <div class="column"><img src="p15.jpg" alt="Basotho Food" onclick="showImage(this);"></div>
+    </div>
+
+    <div class="culture">
+      <h3>Culture</h3>
+      <div class="column"><img src="photo8.jfif" alt="Basotho blankets + hats" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo9.jfif" alt="Basotho Cultural Houses" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo7.jfif" alt="Basotho Cultural + hats" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo10.jfif" alt="Liketoa" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo5.jpg" alt="Basotho blankets" onclick="showImage(this);"></div>
+    </div>
+
+    <div class="animals">
+      <h3>Animals</h3>
+      <div class="column"><img src="p3.jpg" alt="Pere/horse Used for Transport" onclick="showImage(this);"></div>
+      <div class="column"><img src="p5.jpg" alt="Khomo/Cow Used for farming and Food e.g Meat and Milk" onclick="showImage(this);"></div>
+      <div class="column"><img src="p14.jpg" alt="Kolobe/Pig Used for Meat" onclick="showImage(this);"></div>
+      <div class="column"><img src="p10.jpg" alt="Katse/Cat Used to kill rats in residents" onclick="showImage(this);"></div>
+      <div class="column"><img src="p11.jpg" alt="Nku/Goat Used for Meat and Milk also Mohair" onclick="showImage(this);"></div>
+      <div class="column"><img src="p12.jpg" alt="Goat" onclick="showImage(this);"></div>
+      <div class="column"><img src="p13.jpg" alt="Donkey Used for Transport" onclick="showImage(this);"></div>
+    </div>
+
+    <div class="container">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <div style="margin-bottom: 10px;">
+        <button type="button" onclick="stepBasotho(-1)" style="background: rgba(0,0,0,0.7); color: white; padding: 6px 14px; border-radius: 6px; margin-right: 8px;">Previous</button>
+        <button type="button" onclick="stepBasotho(1)" style="background: rgba(0,0,0,0.7); color: white; padding: 6px 14px; border-radius: 6px;">Next</button>
+      </div>
+      <img id="expandedImg" style="width:50%" alt="Expanded image">
+      <div id="imgtext"></div>
+    </div>
+  </div>
+</div>
+
+<p class="five">Plan Your Trip, Tell Me Where You Want To Spent Time With Your Family And Friends!!!<button><a href="Contact.html">Book now</a></button></p>
+
+<footer>Mpakanyane Tours-Powered by Klein</footer>
+</body>
+</html>

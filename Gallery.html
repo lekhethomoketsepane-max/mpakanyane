@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Gallery</title>
+</head>
+<body>
+
+<script>
+let currentGalleryIndex = 0;
+
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+   localStorage.setItem("kleinDarkMode", element.classList.contains("dark-mode") ? "true" : "false");
+}
+
+function showImage(imgs) {
+  var allImages = Array.from(document.querySelectorAll(".column img"));
+  currentGalleryIndex = allImages.indexOf(imgs);
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = (imgs.alt || "Lesotho Gallery") + " (" + (currentGalleryIndex + 1) + " of " + allImages.length + ")";
+  expandImg.parentElement.style.display = "block";
+}
+
+function stepGallery(delta) {
+  var allImages = Array.from(document.querySelectorAll(".column img"));
+  if (!allImages.length) return;
+  currentGalleryIndex = (currentGalleryIndex + delta + allImages.length) % allImages.length;
+  showImage(allImages[currentGalleryIndex]);
+}
+
+document.addEventListener("keydown", function (event) {
+  var expandImg = document.getElementById("expandedImg");
+  if (!expandImg || expandImg.parentElement.style.display !== "block") return;
+  if (event.key === "ArrowRight") stepGallery(1);
+  if (event.key === "ArrowLeft") stepGallery(-1);
+  if (event.key === "Escape") expandImg.parentElement.style.display = "none";
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("kleinDarkMode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+
+  const STORAGE_KEY = "kleinLesothoVisitorName";
+
+  const nameFields = [
+    document.getElementById("fullName"),
+    document.getElementById("contactName")
+  ].filter(Boolean);
+
+  const savedName = localStorage.getItem(STORAGE_KEY);
+  if (savedName) {
+    nameFields.forEach((field) => {
+      if (!field.value) {
+        field.value = savedName;
+      }
+    });
+
+    const banner = document.createElement("div");
+    banner.id = "kleinSavedVisitorBanner";
+    banner.style.cssText =
+      "text-align:center;padding:8px 14px;margin:10px auto;max-width:600px;border-radius:8px;background:skyblue;color:grey;font-size:15px;";
+    banner.textContent = "Welcome back, " + savedName + " (loaded from localStorage).";
+    const target = document.querySelector(".container4") || document.body.firstElementChild;
+    if (target && target.parentNode) {
+      target.parentNode.insertBefore(banner, target);
+    }
+  }
+
+  nameFields.forEach((field) => {
+    field.addEventListener("change", function () {
+      const trimmed = field.value.trim();
+      if (trimmed) {
+        localStorage.setItem(STORAGE_KEY, trimmed);
+      }
+    });
+  });
+
+  const regForm = document.getElementById("regForm");
+  if (regForm) {
+    const statusEl = document.createElement("p");
+    statusEl.id = "regStatusMessage";
+    statusEl.style.cssText = "margin-top:8px;font-weight:bold;font-size:14px;";
+    regForm.appendChild(statusEl);
+
+    regForm.addEventListener("submit", function () {
+      const p1 = document.getElementById("password")?.value || "";
+      const p2 = document.getElementById("password2")?.value || "";
+      if (p1 !== p2) {
+        statusEl.style.color = "crimson";
+        statusEl.textContent = "Error: Passwords do not match.";
+      } else {
+        statusEl.style.color = "darkgreen";
+        statusEl.textContent = "Success: Registration details validated.";
+      }
+    });
+  }
+});
+
+</script>
+
+<header class="navbar">
+  <h2 class="logo">:) KLEIN<p>Mpakanyane Tours</p></h2>
+  <nav class="link">
+    <ul>
+      <button><li><a href="index.html">Home</a></li></button>
+      <button><li><a href="about.html">About</a></li></button>
+      <button><li><a href="services.html">Product/Services</a></li></button>
+      <button><li><a href="Gallery.html" class="active">Gallery</a></li></button>
+      <button><li><a href="Contact.html">Contact</a></li></button>
+      <button onclick="myFunction()">switch mode</button>
+    </ul>
+  </nav>
+</header>
+
+<div class="gallery-item">
+  <div class="desc">Welcome To The Websites Gallery</div>
+  <button style="background-color: white; border-radius: 10px; font-size: 20px; color: black; padding: 6px 14px;"><a href="Basotho.html" style="color: black; text-decoration: none;">Explore Culture</a></button>
+</div>
+
+<div class="z">
+  <div class="row">
+    <div>
+      <div class="column"><img src="gallery.jpg" alt="ShoeShoe Lounge Thaba-Bosiu" onclick="showImage(this);"></div>
+      <div class="column"><img src="gallery2.jpg" alt="Thaba-Bosiu Cultural Village" onclick="showImage(this);"></div>
+      <div class="column"><img src="gallery3.jpg" alt="Thaba-Bosiu Cultural Village" onclick="showImage(this);"></div>
+      <div class="column"><img src="gallery4.jpg" alt="Thaba-Bosiu Cultural Village" onclick="showImage(this);"></div>
+    </div>
+
+    <div>
+      <div class="column"><img src="gallery5.jpg" alt="Thaba-Bosiu Cultural Village" onclick="showImage(this);"></div>
+      <div class="column"><img src="gallery6.jpg" alt="Thaba-Bosiu Cultural Village" onclick="showImage(this);"></div>
+      <div class="column"><img src="gallery7.jpg" alt="Thaba-Bosiu Cultural Village Stadium" onclick="showImage(this);"></div>
+      <div class="column"><img src="Tshehlanyane.jfif" alt="Tshehlanyane" onclick="showImage(this);"></div>
+    </div>
+
+    <div>
+      <div class="column"><img src="gallery6.jpg" alt="Thaba-Bosiu Cultural Village" onclick="showImage(this);"></div>
+      <div class="column"><img src="Maletsunyane.jfif" alt="Maletsunyane" onclick="showImage(this);"></div>
+      <div class="column"><img src="Tshehlanyane.jfif" alt="Tshehlanyane" onclick="showImage(this);"></div>
+      <div class="column"><img src="Maletsunyane2.jfif" alt="Maletsunyane Lounge" onclick="showImage(this);"></div>
+    </div>
+
+    <div>
+      <div class="column"><img src="Tshehlanyane2.jfif" alt="Tshehlanyane Lounge" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo.jfif" alt="Afri-Ski" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo2.jfif" alt="Afri-Ski" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo3.jfif" alt="Afri-Ski" onclick="showImage(this);"></div>
+    </div>
+
+    <div>
+      <div class="column"><img src="photo4.jfif" alt="Afri-Ski" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo5.jpg" alt="Afri-Ski" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo6.jfif" alt="Afri-Ski" onclick="showImage(this);"></div>
+      <div class="column"><img src="photo7.jfif" alt="Basotho" onclick="showImage(this);"></div>
+    </div>
+
+    <div class="container">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <div style="margin-bottom: 10px;">
+        <button type="button" onclick="stepGallery(-1)" style="background: rgba(0,0,0,0.7); color: white; padding: 6px 14px; border-radius: 6px; margin-right: 8px;">Previous</button>
+        <button type="button" onclick="stepGallery(1)" style="background: rgba(0,0,0,0.7); color: white; padding: 6px 14px; border-radius: 6px;">Next</button>
+      </div>
+      <img id="expandedImg" style="width:50%" alt="Expanded view">
+      <div id="imgtext"></div>
+    </div>
+  </div>
+</div>
+
+<p class="five">Plan Your Trip, Tell Me Where You Want To Spent Time With Your Family And Friends!!!<button><a href="Contact.html">Book now</a></button></p>
+
+<footer>Mpakanyane Tours-Powered by Klein</footer>
+</body>
+</html>
